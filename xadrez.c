@@ -1,31 +1,59 @@
 #include <stdio.h>
 
 int main() {
-    // ----------- TORRE (for) -----------
-    // A torre se move em linha reta. Simularemos 5 movimentos para a direita.
-    printf("Movimento da TORRE:\n");
-    for (int i = 1; i <= 5; i++) {
-        printf("Casa %d: Direita\n", i);
+    // ========================
+    // TORRE (Movimento: Direita)
+    // ========================
+    const int passosTorre = 5;
+
+    printf("Movimento da Torre:\n");
+    for (int i = 1; i <= passosTorre; i++) {
+        printf("Direita\n");
     }
 
-    // ----------- BISPO (while) -----------
-    // O bispo se move em diagonal. Simularemos 5 movimentos para cima e à direita.
-    printf("\nMovimento do BISPO:\n");
+    // ========================
+    // BISPO (Movimento: Diagonal Superior Direita)
+    // ========================
+    const int passosBispo = 5;
     int j = 1;
-    while (j <= 5) {
-        printf("Casa %d: Cima Direita\n", j);
+
+    printf("\nMovimento do Bispo:\n");
+    while (j <= passosBispo) {
+        printf("Cima Direita\n");
         j++;
     }
 
-    // ----------- RAINHA (do-while) -----------
-    // A rainha se move em todas as direções. Simularemos 8 movimentos para a esquerda.
-    printf("\nMovimento da RAINHA:\n");
+    // ========================
+    // RAINHA (Movimento: Esquerda)
+    // ========================
+    const int passosRainha = 8;
     int k = 1;
+
+    printf("\nMovimento da Rainha:\n");
     do {
-        printf("Casa %d: Esquerda\n", k);
+        printf("Esquerda\n");
         k++;
-    } while (k <= 8);
+    } while (k <= passosRainha);
+
+    // ========================
+    // CAVALO (Movimento: em L -> 2 Baixo + 1 Esquerda)
+    // ========================
+    const int passosVerticais = 2;
+    const int passosHorizontais = 1;
+
+    printf("\nMovimento do Cavalo:\n");
+
+    // Primeiro loop (for): movimenta duas vezes para baixo
+    for (int v = 1; v <= passosVerticais; v++) {
+        printf("Baixo\n");
+    }
+
+    // Segundo loop (while): uma vez para a esquerda
+    int h = 0;
+    while (h < passosHorizontais) {
+        printf("Esquerda\n");
+        h++;
+    }
 
     return 0;
 }
-
