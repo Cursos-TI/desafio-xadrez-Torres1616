@@ -1,59 +1,72 @@
 #include <stdio.h>
 
-int main() {
-    // ========================
-    // TORRE (Movimento: Direita)
-    // ========================
-    const int passosTorre = 5;
 
-    printf("Movimento da Torre:\n");
-    for (int i = 1; i <= passosTorre; i++) {
-        printf("Direita\n");
+// Função recursiva para mover a Torre (5 casas para a direita)
+void moverTorre(int casas) {
+    if (casas == 0) return;
+    printf("Direita\n");
+    moverTorre(casas - 1);
+}
+
+// Função recursiva para mover a Rainha (8 casas para a esquerda)
+void moverRainha(int casas) {
+    if (casas == 0) return;
+    printf("Esquerda\n");
+    moverRainha(casas - 1);
+}
+
+// Função recursiva com loops aninhados para mover o Bispo (5 casas na diagonal superior direita)
+void moverBispo(int atual, int limite) {
+    if (atual >= limite) return;
+
+    for (int i = atual; i < atual + 1; i++) {
+        for (int j = atual; j < atual + 1; j++) {
+            printf("Cima Direita\n");
+        }
     }
 
-    // ========================
-    // BISPO (Movimento: Diagonal Superior Direita)
-    // ========================
-    const int passosBispo = 5;
-    int j = 1;
+    moverBispo(atual + 1, limite);
+}
 
-    printf("\nMovimento do Bispo:\n");
-    while (j <= passosBispo) {
-        printf("Cima Direita\n");
-        j++;
-    }
-
-    // ========================
-    // RAINHA (Movimento: Esquerda)
-    // ========================
-    const int passosRainha = 8;
-    int k = 1;
-
-    printf("\nMovimento da Rainha:\n");
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while (k <= passosRainha);
-
-    // ========================
-    // CAVALO (Movimento: em L -> 2 Baixo + 1 Esquerda)
-    // ========================
-    const int passosVerticais = 2;
-    const int passosHorizontais = 1;
+// Movimento do Cavalo (2 casas para cima e 1 para a direita) com loops complexos
+void moverCavalo() {
+    int verticais = 2;
+    int horizontais = 1;
 
     printf("\nMovimento do Cavalo:\n");
 
-    // Primeiro loop (for): movimenta duas vezes para baixo
-    for (int v = 1; v <= passosVerticais; v++) {
-        printf("Baixo\n");
+    for (int i = 0; i < verticais; i++) {
+        if (i == 1) continue;  // exemplo de uso de continue
+        printf("Cima\n");
     }
 
-    // Segundo loop (while): uma vez para a esquerda
-    int h = 0;
-    while (h < passosHorizontais) {
-        printf("Esquerda\n");
-        h++;
+    int j = 0;
+    while (j < horizontais) {
+        if (j > 1) break;  // exemplo de uso de break
+        printf("Direita\n");
+        j++;
     }
+}
+
+int main() {
+    const int passosTorre = 5;
+    const int passosBispo = 5;
+    const int passosRainha = 8;
+
+    // Movimento da Torre
+    printf("Movimento da Torre:\n");
+    moverTorre(passosTorre);
+
+    // Movimento do Bispo
+    printf("\nMovimento do Bispo:\n");
+    moverBispo(0, passosBispo);
+
+    // Movimento da Rainha
+    printf("\nMovimento da Rainha:\n");
+    moverRainha(passosRainha);
+
+    // Movimento do Cavalo
+    moverCavalo();
 
     return 0;
 }
